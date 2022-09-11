@@ -1,4 +1,5 @@
-import { createServer } from '@graphql-yoga/node';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { ApolloServer } from 'apollo-server-micro';
 import { connectToDatabase } from '../../lib/server/connectToMongoDB';
 
 const typeDefs = /* GraphQL */ `
@@ -18,15 +19,28 @@ const resolvers = {
   },
 };
 
-connectToDatabase();
-
-const server = createServer({
-  schema: {
-    typeDefs,
-    resolvers,
-  },
-  endpoint: '/api/graphql',
-  // graphiql: false // uncomment to disable GraphiQL
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  csrfPrevention: true,
+  cache: 'bounded',
+  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
 });
 
-export default server;
+const startServer = server.start();
+
+export default async function handler(req, res) {
+  await connectToDatabase().then(({ client, db }) => {
+    console.info('Database connected');
+  });
+  await startServer;
+  await server.createHandler({
+    path: '/api/graphql',
+  })(req, res);
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

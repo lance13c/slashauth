@@ -71,3 +71,18 @@ Learn more about the power of Turborepo:
 - [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
 - [Configuration Options](https://turborepo.org/docs/reference/configuration)
 - [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+
+## Setup
+
+### Mac Setup
+
+1. Install Docker
+
+   ```
+   brew install docker
+   ```
+
+1. Install Docker Compose
+   ```
+   brew install docker-compose
+   ```
