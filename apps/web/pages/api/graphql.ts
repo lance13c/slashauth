@@ -1,4 +1,5 @@
-import { createServer } from '@graphql-yoga/node'
+import { createServer } from '@graphql-yoga/node';
+import { connectToDatabase } from '../../lib/server/connectToMongoDB';
 
 const typeDefs = /* GraphQL */ `
   type Query {
@@ -7,15 +8,17 @@ const typeDefs = /* GraphQL */ `
   type User {
     name: String
   }
-`
+`;
 
 const resolvers = {
   Query: {
     users() {
-      return [{ name: 'Nextjs' }]
+      return [{ name: 'Nextjs' }];
     },
   },
-}
+};
+
+connectToDatabase();
 
 const server = createServer({
   schema: {
@@ -24,6 +27,6 @@ const server = createServer({
   },
   endpoint: '/api/graphql',
   // graphiql: false // uncomment to disable GraphiQL
-})
+});
 
-export default server
+export default server;

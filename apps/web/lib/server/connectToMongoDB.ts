@@ -26,15 +26,6 @@ export async function connectToDatabase() {
     useUnifiedTopology: true,
   };
 
-  // check the MongoDB URI
-  if (!MONGODB_URI) {
-    throw new Error('Define the MONGODB_URI environmental variable');
-  }
-  // check the MongoDB DB
-  if (!MONGODB_DB) {
-    throw new Error('Define the MONGODB_DB environmental variable');
-  }
-
   // Connect to cluster
   let client = new MongoClient(MONGODB_URI);
   await client.connect();
