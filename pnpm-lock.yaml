@@ -53,6 +53,8 @@ importers:
       eslint: 7.32.0
       eslint-config-custom: workspace:*
       graphql: ^16.6.0
+      graphql-compose: ^9.0.9
+      graphql-compose-mongoose: ^9.7.1
       micro: ^9.4.1
       mongodb: ^4.9.1
       mongoose: ^6.6.0
@@ -70,6 +72,8 @@ importers:
       apollo-server-core: 3.10.2_graphql@16.6.0
       apollo-server-micro: 3.10.2_graphql@16.6.0+micro@9.4.1
       graphql: 16.6.0
+      graphql-compose: 9.0.9_graphql@16.6.0
+      graphql-compose-mongoose: 9.7.1_szbaasjrp6d4g2m6t46evdzvnu
       micro: 9.4.1
       mongodb: 4.9.1
       mongoose: 6.6.0
@@ -1502,6 +1506,10 @@ packages:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: false
 
+  /dataloader/2.1.0:
+    resolution: {integrity: sha512-qTcEYLen3r7ojZNgVUaRggOI+KM7jrKxXeSHhogh/TWxYMeONEMqY+hmkobiYQozsGIyg9OYVzO4ZIfoB4I0pQ==}
+    dev: false
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -2132,6 +2140,44 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
 
+  /graphql-compose-connection/8.2.1_graphql-compose@9.0.9:
+    resolution: {integrity: sha512-75QOx1HusfkLzDlF+RMGoC0UowbZ2R7/xFRIMfbQf1gc6eeRqiGmTWFxHaUYk2WjTAB4dGO7p/gllfwqO0W/TA==}
+    peerDependencies:
+      graphql-compose: ^7.15.0 || ^8.0.0 || ^9.0.0
+    dependencies:
+      graphql-compose: 9.0.9_graphql@16.6.0
+    dev: false
+
+  /graphql-compose-mongoose/9.7.1_szbaasjrp6d4g2m6t46evdzvnu:
+    resolution: {integrity: sha512-G4ZwL2aVo1f4PKQ7ra6SKDqMyY32ZtY3fKKN0ZIfmyKiZE/gknJduKdknwkiga7YUsyqlIHKYAYYr6LdRPVZUQ==}
+    peerDependencies:
+      graphql-compose: ^7.21.4 || ^8.0.0 || ^9.0.0
+      mongoose: ^6.0.0 || ^5.0.0 || ^4.4.0
+    dependencies:
+      dataloader: 2.1.0
+      graphql-compose: 9.0.9_graphql@16.6.0
+      graphql-compose-connection: 8.2.1_graphql-compose@9.0.9
+      graphql-compose-pagination: 8.3.0_graphql-compose@9.0.9
+      mongoose: 6.6.0
+    dev: false
+
+  /graphql-compose-pagination/8.3.0_graphql-compose@9.0.9:
+    resolution: {integrity: sha512-zZoBhlWD9KnAJ9AUOeFNeoE4Q/zMxZaxg0tR+HFMVNFnw7ENUnIChMWnD2uvmvik+k8Yv304hMF4n81okGVsJw==}
+    peerDependencies:
+      graphql-compose: ^7.15.0 || ^8.0.0 || ^9.0.0
+    dependencies:
+      graphql-compose: 9.0.9_graphql@16.6.0
+    dev: false
+
+  /graphql-compose/9.0.9_graphql@16.6.0:
+    resolution: {integrity: sha512-kEXdwuBk7GKaThWY7eKDP+GLF9pGrGuMpYLu3O5w+lwDsgsfdiUCEC8jTsuPjm1qz9AxsspZHqc3jA4vKwyiNg==}
+    peerDependencies:
+      graphql: ^14.2.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      graphql: 16.6.0
+      graphql-type-json: 0.3.2_graphql@16.6.0
+    dev: false
+
   /graphql-tag/2.12.6_graphql@16.6.0:
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
     engines: {node: '>=10'}
@@ -2140,6 +2186,14 @@ packages:
     dependencies:
       graphql: 16.6.0
       tslib: 2.4.0
+    dev: false
+
+  /graphql-type-json/0.3.2_graphql@16.6.0:
+    resolution: {integrity: sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==}
+    peerDependencies:
+      graphql: '>=0.8.0'
+    dependencies:
+      graphql: 16.6.0
     dev: false
 
   /graphql/16.6.0:

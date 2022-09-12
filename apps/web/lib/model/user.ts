@@ -1,9 +1,16 @@
+import { composeMongoose } from 'graphql-compose-mongoose';
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const userScheme = new Schema({
-  id: Schema.Types.ObjectId,
+export interface User {
+  avatarUrl: string;
+  name: string;
+}
+
+export interface UserDocument extends User, mongoose.Document {}
+
+export const userScheme = new Schema({
   avatarUrl: {
     type: String,
     trim: true,
@@ -14,5 +21,8 @@ const userScheme = new Schema({
   },
 });
 
-const UserScheme = mongoose.model('User', userScheme);
-module.exports = { UserScheme };
+const UserScheme = mongoose.model<UserDocument>('User', userScheme);
+const CUSTOM_OPTIONS = {};
+
+// Coverts Mongoose Scheme to GraphQL
+export const UserComposed = composeMongoose(UserScheme, CUSTOM_OPTIONS);

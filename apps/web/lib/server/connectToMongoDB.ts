@@ -1,42 +1,35 @@
-import { Db, MongoClient } from 'mongodb';
-import { assertIsDefined } from '../helper/assert';
+import mongoose from 'mongoose';
+import { serverEnvs } from './serverEnvs';
 
-const MONGODB_URI = process?.env?.MONGODB_URI;
-const MONGODB_DB = process?.env?.MONGODB_DB;
-
-assertIsDefined(MONGODB_URI, 'MONGODB_URI');
-assertIsDefined(MONGODB_DB, 'MONGODB_DB');
-
-let cachedClient: MongoClient;
-let cachedDb: Db;
+let cachedConnection: mongoose.Connection | null = null;
 
 export async function connectToDatabase() {
   // check the cached.
-  if (cachedClient && cachedDb) {
+  if (cachedConnection) {
     // load from cache
-    return {
-      client: cachedClient,
-      db: cachedDb,
-    };
+    return cachedConnection;
   }
 
-  // set the connection options
-  const opts = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  };
+  // // set the connection options
+  // const opts = {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // };
 
   // Connect to cluster
-  let client = new MongoClient(MONGODB_URI);
-  await client.connect();
-  let db = client.db(MONGODB_DB);
 
-  // set cache
-  cachedClient = client;
-  cachedDb = db;
-
-  return {
-    client: cachedClient,
-    db: cachedDb,
-  };
+  try {
+    mongoose.connect(serverEnvs.MONGODB_URI, { autoIndex: false, dbName: serverEnvs.MONGODB_DB }, (error) => {
+      if (error) {
+        console.error(error);
+      }
+    });
+    console.log('mongodb database started');
+    console.info('mongodbURI');
+    console.info('dbName');
+    cachedConnection = mongoose.connection;
+    return mongoose.connection;
+  } catch (err) {
+    console.error(err);
+  }
 }
