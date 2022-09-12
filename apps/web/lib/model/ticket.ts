@@ -32,8 +32,8 @@ const ticketScheme = new Schema({
   },
 });
 
-const TicketScheme = mongoose.model<TicketDocument>('Ticket', ticketScheme);
+const TicketModel = mongoose.model<TicketDocument>('Ticket', ticketScheme);
 const CUSTOM_OPTIONS = {};
 
 // Coverts Mongoose Scheme to GraphQL
-export const TicketComposed = composeMongoose(TicketScheme, CUSTOM_OPTIONS);
+export const TicketComposed = composeMongoose(TicketModel, CUSTOM_OPTIONS);

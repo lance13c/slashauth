@@ -21,8 +21,8 @@ export const userScheme = new Schema({
   },
 });
 
-const UserScheme = mongoose.model<UserDocument>('User', userScheme);
+const UserModel = mongoose.model<UserDocument>('User', userScheme);
 const CUSTOM_OPTIONS = {};
 
 // Coverts Mongoose Scheme to GraphQL
-export const UserComposed = composeMongoose(UserScheme, CUSTOM_OPTIONS);
+export const UserComposed = composeMongoose(UserModel, CUSTOM_OPTIONS);

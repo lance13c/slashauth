@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import clientEnvs from './clientEnvs';
+
+const GRAPHQL_URI = '/api/graphql';
 
 const client = new ApolloClient({
-  uri: clientEnvs.MONGODB_URI,
+  uri: GRAPHQL_URI,
   cache: new InMemoryCache(),
 });
 

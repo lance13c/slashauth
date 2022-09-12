@@ -1,29 +1,22 @@
-import useSWR from 'swr'
+import { useQuery } from '@apollo/client';
+import { GetTickets } from '../lib/graphql/queries';
 
-const fetcher = (query: string) =>
-  fetch('/api/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({ query }),
-  })
-    .then((res) => res.json())
-    .then((json) => json.data)
+export default function Home() {
+  const { data, error } = useQuery(GetTickets);
 
-export default function Index() {
-  const { data, error } = useSWR('{ users { name } }', fetcher)
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
 
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  const { tickets } = data;
 
-  const { users } = data
+  console.log('tickets', tickets);
 
   return (
     <div>
-      {users.map((user: any, i: number) => (
+      {/* {users.map((user: any, i: number) => (
         <div key={i}>{user.name}</div>
-      ))}
+      ))} */}
+      Test
     </div>
-  )
+  );
 }
