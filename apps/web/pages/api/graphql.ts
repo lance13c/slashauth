@@ -4,23 +4,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { graphQLScheme } from '../../lib/model';
 import { connectToDatabase } from '../../lib/server/connectToMongoDB';
 
-// const typeDefs = /* GraphQL */ `
-//   type Query {
-//     users: [User!]!
-//   }
-//   type User {
-//     name: String
-//   }
-// `;
-
-// const resolvers = {
-//   Query: {
-//     users() {
-//       return [{ name: 'Nextjs' }];
-//     },
-//   },
-// };
-
 const server = new ApolloServer({
   schema: graphQLScheme,
   csrfPrevention: true,
