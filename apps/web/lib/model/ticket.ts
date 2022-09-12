@@ -32,7 +32,6 @@ const ticketScheme = new Schema({
   },
 });
 
-const Ticket = mongoose.model('Ticket', ticketScheme);
 const TicketScheme = mongoose.model<TicketDocument>('Ticket', ticketScheme);
 const CUSTOM_OPTIONS = {};
 

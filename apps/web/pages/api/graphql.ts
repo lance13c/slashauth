@@ -17,7 +17,6 @@ const startServer = server.start();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Connects to mongodb via mongoose
   await connectToDatabase();
-
   await startServer;
 
   res.setHeader('access-control-allow-methods', 'POST');
