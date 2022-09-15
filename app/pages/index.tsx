@@ -20,6 +20,11 @@ export default function Home() {
       <Main>
         <ContentPadding>
           <ActionBar />
+          <div
+            style={{
+              marginTop: '2rem',
+            }}
+          ></div>
           <List>
             {tickets.map((ticket) => (
               <ListItem key={ticket._id + ticket.title}>
