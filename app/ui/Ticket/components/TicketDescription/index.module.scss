@@ -1,0 +1,13 @@
+.descriptionContainer {
+  flex: 1;
+
+  max-width: 300px;
+}
+
+.description {
+  font-size: 1rem;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+
+  max-height: 80px;
+}
