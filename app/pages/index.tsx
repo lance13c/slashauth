@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { GetTickets } from '@lib/graphql/queries';
+import ActionBar from '@ui/ActionBar';
 import ContentPadding from '@ui/ContentPadding';
 import List from '@ui/List';
 import ListItem from '@ui/ListItem';
@@ -18,6 +19,7 @@ export default function Home() {
     <PageLayout>
       <Main>
         <ContentPadding>
+          <ActionBar />
           <List>
             {tickets.map((ticket) => (
               <ListItem key={ticket._id + ticket.title}>

@@ -1,0 +1,17 @@
+.createTicketButton {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 1rem;
+
+  background-color: #496cd6;
+  color: white;
+
+  border: none;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}
