@@ -1,7 +1,7 @@
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-micro';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { graphQLScheme } from '../../lib/model';
+import { graphQLScheme } from '../../lib/schemes';
 import { connectToDatabase } from '../../lib/server/connectToMongoDB';
 
 const server = new ApolloServer({

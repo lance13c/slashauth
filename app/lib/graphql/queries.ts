@@ -1,5 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import { MongooseTicket } from '../model/ticket';
+import { MongooseTicket } from '../schemes/ticket';
 
 interface GetTicketsResults {
   ticketMany?: MongooseTicket[];

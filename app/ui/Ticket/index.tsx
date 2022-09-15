@@ -1,4 +1,4 @@
-import { MongooseTicket } from '@lib/model/ticket';
+import { MongooseTicket } from '@lib/schemes/ticket';
 import TicketTitle from './components/TicketTitle';
 import styles from './index.module.scss';
 
