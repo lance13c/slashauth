@@ -1,6 +1,9 @@
 import { useQuery } from '@apollo/client';
+import { GetTickets } from '@lib/graphql/queries';
+import List from '@ui/List';
+import ListItem from '@ui/ListItem';
+import PageLayout from '@ui/PageLayout';
 import Ticket from '@ui/Ticket';
-import { GetTickets } from '../lib/graphql/queries';
 
 export default function Home() {
   const { data, error } = useQuery(GetTickets);
@@ -10,10 +13,14 @@ export default function Home() {
   if (tickets.length < 1) return <div>Loading...</div>;
 
   return (
-    <div>
-      {tickets.map((ticket) => (
-        <Ticket key={ticket._id} {...ticket} />
-      ))}
-    </div>
+    <PageLayout>
+      <List>
+        {tickets.map((ticket) => (
+          <ListItem key={ticket._id + ticket.title}>
+            <Ticket {...ticket} />
+          </ListItem>
+        ))}
+      </List>
+    </PageLayout>
   );
 }

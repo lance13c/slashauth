@@ -6,7 +6,7 @@ interface TicketProps extends MongooseTicket {}
 
 const Ticket: React.FunctionComponent<TicketProps> = ({ _id, title, description, status, assignee }) => {
   return (
-    <div key={_id} className={styles.title}>
+    <div className={styles.title}>
       <TicketTitle title={title} />
       <p>{description}</p>
       <p>{status}</p>

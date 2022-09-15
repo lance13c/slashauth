@@ -1,0 +1,14 @@
+.pageLayout {
+  display: grid;
+  height: 100dvh;
+  height: 100vh;
+
+  grid-template-columns:
+    [full-width]
+    auto [main] auto
+    [full-width];
+  grid-template-rows: header main footer;
+
+  padding: 0.25rem;
+  margin: 0;
+}
