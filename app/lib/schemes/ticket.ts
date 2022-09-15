@@ -1,12 +1,7 @@
 import mongoose from 'mongoose';
-import { userScheme } from './user';
+import { User, userScheme } from './user';
 
 const { Schema } = mongoose;
-
-export interface User {
-  name: string;
-  avatarUrl: string;
-}
 
 export interface Ticket {
   title: string;
