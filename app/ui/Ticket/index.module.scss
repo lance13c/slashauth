@@ -1,10 +1,9 @@
 .ticket {
+  width: 100%;
   display: flex;
-}
+  gap: 1rem;
 
-.ticketHeader {
-  font-size: 1.5rem;
-  font-weight: 600;
+  align-items: baseline;
 }
 
 .ticketContent {
