@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 export interface User {
-  avatarUrl: string;
+  avatarUrl?: string;
   name: string;
 }
 

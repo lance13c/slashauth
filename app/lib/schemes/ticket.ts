@@ -2,20 +2,23 @@ import mongoose from 'mongoose';
 import { User, userScheme } from './user';
 
 const { Schema } = mongoose;
+export type StatusType = 'BACKLOG' | 'IN_PROGRESS' | 'COMPLETED' | 'BLOCKED';
+export const STATUS_TYPES = ['BACKLOG', 'IN_PROGRESS', 'COMPLETED', 'BLOCKED'];
 
-export interface Ticket {
+// TODO: find better name than TicketProps
+export interface TicketProps {
   title: string;
   description: string;
-  status: string;
+  status: StatusType;
   assignee: User;
 }
 
-export interface MongooseTicket extends Ticket {
+export interface MongooseTicket extends TicketProps {
   _id: string;
   _v: number;
 }
 
-export interface TicketDocument extends Ticket, mongoose.Document {}
+export interface TicketDocument extends TicketProps, mongoose.Document {}
 
 export const ticketScheme = new Schema({
   title: {
@@ -28,7 +31,7 @@ export const ticketScheme = new Schema({
   },
   status: {
     type: String,
-    enum: ['BACKLOG', 'IN_PROGRESS', 'COMPLETED', 'BLOCKED'],
+    enum: STATUS_TYPES,
     trim: true,
   },
   assignee: {

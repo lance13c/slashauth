@@ -9,29 +9,33 @@ import PageLayout from '@ui/PageLayout';
 import Ticket from '@ui/Ticket';
 
 export default function Home() {
-  const { data, error } = useQuery(GetTickets);
+  const { data, error, loading } = useQuery(GetTickets);
   const tickets = data?.ticketMany ?? [];
 
   if (error) return <div>Failed to load</div>;
-  if (tickets.length < 1) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <PageLayout>
       <Main>
         <ContentPadding>
-          <ActionBar />
           <div
             style={{
               marginTop: '2rem',
             }}
           ></div>
-          <List>
+          <List
+            style={{
+              flexDirection: 'column',
+            }}
+          >
             {tickets.map((ticket) => (
               <ListItem key={ticket._id + ticket.title}>
                 <Ticket {...ticket} />
               </ListItem>
             ))}
           </List>
+          <ActionBar />
         </ContentPadding>
       </Main>
     </PageLayout>
