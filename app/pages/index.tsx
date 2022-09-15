@@ -7,7 +7,7 @@ export default function Home() {
   const tickets = data?.ticketMany ?? [];
 
   if (error) return <div>Failed to load</div>;
-  if (!tickets) return <div>Loading...</div>;
+  if (tickets.length < 1) return <div>Loading...</div>;
 
   return (
     <div>
