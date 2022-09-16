@@ -5,3 +5,33 @@
   font-size: 1rem;
   text-overflow: ellipsis;
 }
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 30px;
+  width: 30px;
+
+  border-radius: 50%;
+  background-color: lightgrey;
+  border: 2px solid lightgrey;
+
+  color: black;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    border: 2px solid rgba(206, 51, 227);
+  }
+}
+
+.tooltip {
+  display: hidden;
+
+  &:hover,
+  &:focus {
+    display: block;
+  }
+}

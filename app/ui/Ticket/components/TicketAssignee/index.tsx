@@ -1,36 +1,35 @@
 import { User } from '@lib/schemes/user';
 import * as React from 'react';
+import TicketHeader from '../TicketHeader';
 import styles from './index.module.scss';
 
 interface TicketAssigneeProps {
   user: User;
 }
 
-const TicketHeader = () => {
-  return (
-    <h6
-      style={{
-        textTransform: 'uppercase',
-        fontWeight: 'bold',
-        fontSize: '0.8rem',
-        color: 'grey',
-      }}
-    >
-      Assignee
-    </h6>
-  );
-};
-
 const TicketAssignee: React.FunctionComponent<TicketAssigneeProps> = ({ user }) => {
+  const [initials, setInitials] = React.useState('');
   const { name } = user;
 
-  console.log('user', user);
+  React.useEffect(() => {
+    const nameList = name.split(' ');
+    const tempInitials = nameList
+      .map((value) => {
+        console.log('value', value);
+        return value.at(0);
+      })
+      .join(',');
+
+    setInitials(tempInitials);
+  }, [name]);
 
   return (
     <div className={styles.assigneeContainer}>
       {/* <AvatarImage /> */}
-      <TicketHeader />
-      <p className={styles.assigneeName}>{name}</p>
+      <TicketHeader title='Assignee' />
+      <div className='tooltip'>
+        <div className={styles.avatar}>{initials}</div>
+      </div>
     </div>
   );
 };
