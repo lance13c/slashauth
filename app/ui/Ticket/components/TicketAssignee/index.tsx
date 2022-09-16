@@ -1,4 +1,5 @@
 import { User } from '@lib/schemes/user';
+import Tooltip from '@ui/Tooltip';
 import * as React from 'react';
 import TicketHeader from '../TicketHeader';
 import styles from './index.module.scss';
@@ -27,8 +28,10 @@ const TicketAssignee: React.FunctionComponent<TicketAssigneeProps> = ({ user }) 
     <div className={styles.assigneeContainer}>
       {/* <AvatarImage /> */}
       <TicketHeader title='Assignee' />
-      <div className='tooltip'>
-        <div className={styles.avatar}>{initials}</div>
+      <div className={styles.avatar}>
+        <Tooltip label={name}>
+          <p>{initials}</p>
+        </Tooltip>
       </div>
     </div>
   );

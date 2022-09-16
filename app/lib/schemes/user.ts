@@ -8,7 +8,7 @@ export interface UserDocument extends User, mongoose.Document {}
 
 const { Schema } = mongoose;
 
-export const userScheme = new Schema({
+export const UserScheme = new Schema({
   avatarUrl: {
     type: String,
     trim: true,
@@ -19,4 +19,4 @@ export const userScheme = new Schema({
   },
 });
 
-export const UserModel = mongoose.models?.User || mongoose.model<UserDocument>('User', userScheme);
+export const UserModel = mongoose.models?.User || mongoose.model<UserDocument>('User', UserScheme);

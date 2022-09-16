@@ -1,4 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
+import { UserScheme } from '@lib/schemes/user';
 import { TicketProps } from '../schemes/ticket';
 
 interface AddTicketResults {
@@ -21,6 +22,27 @@ export const AddTicket: TypedDocumentNode<AddTicketResults, AddTicketVariables> 
         assignee {
           name
         }
+      }
+    }
+  }
+`;
+
+// USER
+interface AddTicketResults {
+  userCreateOne?: {
+    record: typeof UserScheme;
+  };
+}
+
+interface AddTicketVariables {
+  user: typeof UserScheme;
+}
+
+export const CreateUser: TypedDocumentNode<AddTicketResults, AddTicketVariables> = gql`
+  mutation createUser($user: CreateOneUserInput!) {
+    userCreateOne(record: $user) {
+      record {
+        name
       }
     }
   }
