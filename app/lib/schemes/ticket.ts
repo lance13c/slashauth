@@ -24,17 +24,21 @@ export const ticketScheme = new Schema({
   title: {
     type: String,
     trim: true,
+    required: true,
   },
   description: {
     type: String,
     trim: true,
+    defaultValue: '',
   },
   status: {
     type: String,
     enum: STATUS_TYPES,
     trim: true,
+    required: true,
   },
   assignee: {
-    type: [userScheme],
+    type: userScheme,
+    required: true,
   },
 });

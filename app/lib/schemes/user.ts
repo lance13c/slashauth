@@ -18,3 +18,5 @@ export const userScheme = new Schema({
     trim: true,
   },
 });
+
+export const UserModel = mongoose.models?.User || mongoose.model<UserDocument>('User', userScheme);

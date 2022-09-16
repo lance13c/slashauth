@@ -2,7 +2,7 @@ import { schemaComposer } from 'graphql-compose';
 import { composeMongoose } from 'graphql-compose-mongoose';
 import mongoose from 'mongoose';
 import { TicketDocument, ticketScheme } from './ticket';
-import { UserDocument, userScheme } from './user';
+import { UserModel } from './user';
 
 const CUSTOM_OPTIONS = {};
 
@@ -26,7 +26,6 @@ if (!schemaComposer.has('Ticket')) {
 }
 
 // User
-const UserModel = mongoose.models?.User || mongoose.model<UserDocument>('User', userScheme);
 if (!schemaComposer.has('User')) {
   const UserComposed = composeMongoose(UserModel, { schemaComposer });
   schemaComposer.Query.addFields({

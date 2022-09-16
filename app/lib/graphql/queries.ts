@@ -18,3 +18,17 @@ export const GetTickets: TypedDocumentNode<GetTicketsResults> = gql`
     }
   }
 `;
+
+export const GetTicketsByAssignee: TypedDocumentNode<GetTicketsResults> = gql`
+  query GetTickets {
+    ticketMany {
+      title
+      description
+      status
+      assignee {
+        name
+        avatarUrl
+      }
+    }
+  }
+`;
