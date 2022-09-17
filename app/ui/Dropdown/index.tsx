@@ -1,15 +1,20 @@
 import React from 'react';
 import Select, { ActionMeta, GroupBase, OptionsOrGroups } from 'react-select';
 import styles from './index.module.scss';
+
+export interface DropdownOption {
+  value?: string | null;
+  label: string;
+}
 interface DropdownProps {
   name: string;
-  options: OptionsOrGroups<unknown, GroupBase<unknown>>;
+  options: OptionsOrGroups<DropdownOption, GroupBase<DropdownOption>>;
   isLoading?: boolean;
   isDisabled?: boolean;
   isRtl?: boolean;
   isSearchable?: boolean;
   isClearable?: boolean;
-  onChange?: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void;
+  onChange?: (newValue: DropdownOption, actionMeta: ActionMeta<DropdownOption>) => void;
 }
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({

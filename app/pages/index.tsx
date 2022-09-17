@@ -1,8 +1,9 @@
 import { useQuery } from '@apollo/client';
-import { GetTickets } from '@lib/graphql/queries';
+import { GetFilteredTickets, GetFilteredTicketsVariables } from '@lib/graphql/queries';
 import ActionBar from '@ui/ActionBar';
 import AddTicketBar from '@ui/AddTicketBar';
 import ContentPadding from '@ui/ContentPadding';
+import { useFilterContext } from '@ui/context/FilterContext';
 import List from '@ui/List';
 import ListItem from '@ui/ListItem';
 import Main from '@ui/Main';
@@ -10,7 +11,21 @@ import PageLayout from '@ui/PageLayout';
 import Ticket from '@ui/Ticket';
 
 export default function Home() {
-  const { data, error, loading } = useQuery(GetTickets);
+  const { filterState, setFilterState } = useFilterContext();
+
+  // TODO find better way of distilling the filters
+  const filters: GetFilteredTicketsVariables['filters'] = {};
+  if (filterState.assigneeId !== null) {
+    filters.assignee = {
+      _id: filterState.assigneeId || null,
+    };
+  }
+
+  const { data, error, loading } = useQuery(GetFilteredTickets, {
+    variables: {
+      filters: filters,
+    },
+  });
   const tickets = data?.ticketMany ?? [];
 
   if (error) return <div>Failed to load</div>;

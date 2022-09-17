@@ -47,3 +47,29 @@ export const GetAllUsers: TypedDocumentNode<GetAllUsersResults> = gql`
     }
   }
 `;
+
+export interface GetFilteredTicketsVariables {
+  filters?: {
+    assignee?: {
+      _id: string;
+    };
+  };
+}
+interface GetFilteredTicketsResults {
+  ticketMany?: MongooseTicket[];
+}
+
+export const GetFilteredTickets: TypedDocumentNode<GetFilteredTicketsResults, GetFilteredTicketsVariables> = gql`
+  query GetFilteredTickets($filters: FilterFindManyTicketInput) {
+    ticketMany(filter: $filters) {
+      title
+      description
+      status
+      assignee {
+        _id
+        name
+        avatarUrl
+      }
+    }
+  }
+`;

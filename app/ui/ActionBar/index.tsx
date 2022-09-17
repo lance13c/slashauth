@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GetAllUsers } from '@lib/graphql/queries';
 import { useFilterContext } from '@ui/context/FilterContext';
-import Dropdown from '@ui/Dropdown';
+import Dropdown, { DropdownOption } from '@ui/Dropdown';
 import List from '@ui/List';
 import ListItem from '@ui/ListItem';
 import UserForm from '@ui/UserForm';
@@ -52,13 +52,8 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
     });
   };
 
-  const handleOnUserDropdownChange = (newValue: unknown) => {
-    if (typeof newValue !== 'string') {
-      console.error('dropdown value was detected as not a string');
-      return;
-    }
-
-    const userId = newValue as string;
+  const handleOnUserDropdownChange = (newValue: DropdownOption) => {
+    const userId = newValue?.value;
 
     setFilterState((preFilter) => {
       return {
