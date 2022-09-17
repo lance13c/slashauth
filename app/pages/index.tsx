@@ -42,6 +42,12 @@ export default function Home() {
 
           <AddTicketBar />
         </ContentPadding>
+        {/* Adds some padding to bottom of page */}
+        <div
+          style={{
+            height: '40rem',
+          }}
+        ></div>
       </Main>
     </PageLayout>
   );

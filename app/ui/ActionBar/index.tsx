@@ -1,3 +1,4 @@
+import { useFilterContext } from '@ui/context/FilterContext';
 import List from '@ui/List';
 import ListItem from '@ui/ListItem';
 import UserForm from '@ui/UserForm';
@@ -10,6 +11,7 @@ interface ActionBarProps {}
 
 const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const [isUserFormEnabled, setIsTicketFormEnabled] = React.useState(false);
+  const filterContext = useFilterContext();
 
   const { enqueueSnackbar } = useSnackbar();
 

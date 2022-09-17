@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
+import { FilterProvider } from '@ui/context/FilterContext';
 import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
 import client from '../lib/client/apolloClient';
@@ -13,7 +14,9 @@ function App({ Component, pageProps }) {
 
       <ApolloProvider client={client}>
         <SnackbarProvider maxSnack={3}>
-          <Component {...pageProps} />
+          <FilterProvider>
+            <Component {...pageProps} />
+          </FilterProvider>
         </SnackbarProvider>
       </ApolloProvider>
     </>

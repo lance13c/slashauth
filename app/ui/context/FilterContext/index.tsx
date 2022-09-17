@@ -1,20 +1,32 @@
 import { StatusType } from '@lib/schemes/ticket';
-import { createContext, useContext, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useContext, useMemo, useState } from 'react';
 
-interface ContextState {
+interface FilterState {
   assigneeId: null | string;
   status: null | StatusType;
 }
 
-const Context = createContext({});
+interface ContextState {
+  filterState: FilterState;
+  setFilterState: Dispatch<SetStateAction<FilterState>>;
+}
+
+const Context = createContext<ContextState>({
+  filterState: {
+    assigneeId: null,
+    status: null,
+  },
+  setFilterState: (filterState: FilterState) => {},
+});
 
 export function FilterProvider({ children }) {
-  const [contextState, setContextState] = useState<ContextState>({
+  const [filterState, setFilterState] = useState<FilterState>({
     assigneeId: null,
     status: null,
   });
+  const value: ContextState = useMemo(() => ({ filterState, setFilterState }), [filterState]);
 
-  return <Context.Provider value={[contextState, setContextState]}>{children}</Context.Provider>;
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 
 export function useFilterContext() {
