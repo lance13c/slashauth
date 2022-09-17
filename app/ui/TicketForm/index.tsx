@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { AddTicket } from '@lib/graphql/mutations';
 import { GetAllUsers } from '@lib/graphql/queries';
 import { TicketProps } from '@lib/schemes/ticket';
+import SubmitButton from '@ui/buttons/SubmitButton';
 import List from '@ui/List';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
@@ -136,7 +137,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           {errors?.assigneeId?.message && <p>{errors.assigneeId.message}</p>}
         </List>
       </div>
-      <input type='submit' />
+      <SubmitButton />
     </form>
   );
 };

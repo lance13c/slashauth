@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { CreateUser } from '@lib/graphql/mutations';
 import { User } from '@lib/schemes/user';
+import SubmitButton from '@ui/buttons/SubmitButton';
 import List from '@ui/List';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
@@ -87,7 +88,7 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
           <input name='name' autoFocus defaultValue='' required {...register('name', { required: true })} />
           {errors?.name?.message && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         </List>
-        <input type='submit' />
+        <SubmitButton />
       </form>
     </section>
   );

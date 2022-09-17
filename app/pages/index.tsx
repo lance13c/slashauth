@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { GetTickets } from '@lib/graphql/queries';
-import ActionBar from '@ui/ActionBar';
+import ActionBar from '@ui/AddTicketBar';
 import ContentPadding from '@ui/ContentPadding';
 import List from '@ui/List';
 import ListItem from '@ui/ListItem';
