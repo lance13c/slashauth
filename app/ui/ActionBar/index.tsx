@@ -30,7 +30,7 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   return (
     <List>
       <ListItem>
-        {isUserFormEnabled && (
+        {!isUserFormEnabled && (
           <motion.button
             layoutId='action-bar-user-primary'
             onClick={handleOnClickCreateTicket}
@@ -39,7 +39,7 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
             Create User
           </motion.button>
         )}
-        {!isUserFormEnabled && (
+        {isUserFormEnabled && (
           <motion.button layoutId='action-bar-user-primary' onClick={handleOnClose} className={styles.createUserButton}>
             Close
           </motion.button>
@@ -48,17 +48,6 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
       {isUserFormEnabled && (
         <>
           <List>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            ></motion.div>
-
             <ListItem>
               <UserForm onComplete={handleOnComplete} />
             </ListItem>
