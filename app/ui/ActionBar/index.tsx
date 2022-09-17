@@ -19,6 +19,13 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const { data: userData } = useQuery(GetAllUsers, {
     fetchPolicy: 'no-cache',
   });
+  const users = userData?.userMany ?? [];
+  const userOptions = users.map((user) => {
+    return {
+      label: user.name,
+      value: user.name,
+    };
+  });
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -63,13 +70,7 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
           </motion.button>
         )}
       </ListItem>
-      <Dropdown
-        name='user-dropdown'
-        options={[
-          { value: 'test1', label: 'Test1' },
-          { value: 'test2', label: 'Test2' },
-        ]}
-      />
+      <Dropdown name='user-dropdown' options={userOptions} />
 
       {isUserFormEnabled && (
         <>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Select, { GroupBase, OptionsOrGroups } from 'react-select';
-
+import styles from './index.module.scss';
 interface DropdownProps {
   name: string;
   options: OptionsOrGroups<unknown, GroupBase<unknown>>;
@@ -22,7 +22,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
 }) => {
   return (
     <Select
-      // className='basic-single'
+      className={styles.dropdown}
       classNamePrefix='slashauth'
       isDisabled={isDisabled}
       isLoading={isLoading}
