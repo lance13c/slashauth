@@ -1,5 +1,5 @@
 import React from 'react';
-import Select, { GroupBase, OptionsOrGroups } from 'react-select';
+import Select, { ActionMeta, GroupBase, OptionsOrGroups } from 'react-select';
 import styles from './index.module.scss';
 interface DropdownProps {
   name: string;
@@ -9,6 +9,7 @@ interface DropdownProps {
   isRtl?: boolean;
   isSearchable?: boolean;
   isClearable?: boolean;
+  onChange?: (newValue: unknown, actionMeta: ActionMeta<unknown>) => void;
 }
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -19,6 +20,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   isLoading = false,
   isRtl = false,
   isSearchable = true,
+  onChange,
 }) => {
   return (
     <Select
@@ -31,6 +33,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
       isSearchable={isSearchable}
       name={name}
       options={options}
+      onChange={onChange}
     />
   );
 };

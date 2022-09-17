@@ -23,7 +23,7 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const userOptions = users.map((user) => {
     return {
       label: user.name,
-      value: user.name,
+      value: user._id,
     };
   });
 
@@ -52,6 +52,22 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
     });
   };
 
+  const handleOnUserDropdownChange = (newValue: unknown) => {
+    if (typeof newValue !== 'string') {
+      console.error('dropdown value was detected as not a string');
+      return;
+    }
+
+    const userId = newValue as string;
+
+    setFilterState((preFilter) => {
+      return {
+        ...preFilter,
+        assigneeId: userId,
+      };
+    });
+  };
+
   return (
     <List>
       <ListItem>
@@ -70,7 +86,7 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
           </motion.button>
         )}
       </ListItem>
-      <Dropdown name='user-dropdown' options={userOptions} />
+      <Dropdown name='user-dropdown' options={userOptions} onChange={handleOnUserDropdownChange} />
 
       {isUserFormEnabled && (
         <>
