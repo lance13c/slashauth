@@ -27,11 +27,11 @@ const TicketAssignee: React.FunctionComponent<TicketAssigneeProps> = ({ user }) 
     <div className={styles.assigneeContainer}>
       {/* <AvatarImage /> */}
       {/* <TicketHeader title='Assignee' /> */}
-      <div className={styles.avatar}>
-        <Tooltip label={name}>
+      <Tooltip label={name}>
+        <div className={styles.avatar}>
           <p>{initials}</p>
-        </Tooltip>
-      </div>
+        </div>
+      </Tooltip>
     </div>
   );
 };
