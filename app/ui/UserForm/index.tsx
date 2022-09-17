@@ -59,8 +59,21 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <>
-      <h3>Create User</h3>
+    <section
+      style={{
+        border: '2px solid black',
+        padding: '1rem',
+
+        width: '100%',
+      }}
+    >
+      <h3
+        style={{
+          marginBottom: '0',
+        }}
+      >
+        Create User
+      </h3>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.userForm}>
         {/* register your input into the hook by invoking the "register" function */}
         <List
@@ -76,7 +89,7 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
         </List>
         <input type='submit' />
       </form>
-    </>
+    </section>
   );
 };
 

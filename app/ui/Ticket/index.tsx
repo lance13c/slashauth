@@ -15,9 +15,16 @@ const Ticket: React.FunctionComponent<TicketProps> = ({ _id, title, description,
         <div style={{ height: '0.5rem' }}></div>
         <TicketDescription description={description} />
       </div>
-
-      <TicketStatus status={status} />
-      <TicketAssignee user={assignee} />
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
+        }}
+      >
+        <TicketStatus status={status} />
+        <TicketAssignee user={assignee} />
+      </div>
     </div>
   );
 };
