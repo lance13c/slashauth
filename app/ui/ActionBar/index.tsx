@@ -1,4 +1,7 @@
+import { useQuery } from '@apollo/client';
+import { GetAllUsers } from '@lib/graphql/queries';
 import { useFilterContext } from '@ui/context/FilterContext';
+import Dropdown from '@ui/Dropdown';
 import List from '@ui/List';
 import ListItem from '@ui/ListItem';
 import UserForm from '@ui/UserForm';
@@ -11,7 +14,11 @@ interface ActionBarProps {}
 
 const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const [isUserFormEnabled, setIsTicketFormEnabled] = React.useState(false);
-  const filterContext = useFilterContext();
+  const { filterState, setFilterState } = useFilterContext();
+
+  const { data: userData } = useQuery(GetAllUsers, {
+    fetchPolicy: 'no-cache',
+  });
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -26,6 +33,15 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const handleOnComplete = () => {
     enqueueSnackbar('User Successfully Created', {
       variant: 'success',
+    });
+  };
+
+  const handleOnFilterChange = () => {
+    setFilterState((preFilter) => {
+      return {
+        ...preFilter,
+        // Add other filters
+      };
     });
   };
 
@@ -47,6 +63,14 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
           </motion.button>
         )}
       </ListItem>
+      <Dropdown
+        name='user-dropdown'
+        options={[
+          { value: 'test1', label: 'Test1' },
+          { value: 'test2', label: 'Test2' },
+        ]}
+      />
+
       {isUserFormEnabled && (
         <>
           <List>
