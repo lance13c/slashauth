@@ -17,6 +17,7 @@
     "@graphql-yoga/node": "^2.11.2",
     "apollo-server-core": "^3.10.2",
     "apollo-server-micro": "^3.10.2",
+    "framer-motion": "^7.3.5",
     "graphql": "^16.6.0",
     "graphql-compose": "^9.0.9",
     "graphql-compose-mongoose": "^9.7.1",

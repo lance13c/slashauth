@@ -1,4 +1,5 @@
 import { MongooseTicket } from '@lib/schemes/ticket';
+import { motion } from 'framer-motion';
 import TicketAssignee from './components/TicketAssignee';
 import TicketDescription from './components/TicketDescription';
 import TicketStatus from './components/TicketStatus';
@@ -9,7 +10,7 @@ interface TicketProps extends MongooseTicket {}
 
 const Ticket: React.FunctionComponent<TicketProps> = ({ _id, title, description, status, assignee }) => {
   return (
-    <div className={styles.ticket}>
+    <motion.div className={styles.ticket}>
       <div>
         <TicketTitle title={title} />
         <div style={{ height: '0.5rem' }}></div>
@@ -25,7 +26,7 @@ const Ticket: React.FunctionComponent<TicketProps> = ({ _id, title, description,
         <TicketStatus status={status} />
         <TicketAssignee user={assignee} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
