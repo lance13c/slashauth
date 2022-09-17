@@ -4,7 +4,6 @@ import { GetAllUsers } from '@lib/graphql/queries';
 import { TicketProps } from '@lib/schemes/ticket';
 import List from '@ui/List';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import TicketAssignee from './components/TicketAssignee';
 import styles from './index.module.scss';
 
 interface TicketFormProps {
@@ -120,14 +119,10 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
         <label htmlFor='assigneeId'>Assignee</label>
         {errors?.assigneeId?.message && <p>{errors.assigneeId.message}</p>}
         <select name='assigneeId' {...register('assigneeId')}>
-          {/* <option value='BACKLOG'>BACKLOG</option>
-          <option value='IN_PROGRESS'>IN_PROGRESS</option>
-          <option value='COMPLETED'>COMPLETED</option>
-          <option value='BLOCKED'>BLOCKED</option> */}
           {users.map((user) => {
             return (
               <option key={user?._id} value={user.name}>
-                <TicketAssignee user={user} />
+                {user.name}
               </option>
             );
           })}
