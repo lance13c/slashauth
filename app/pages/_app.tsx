@@ -1,5 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
+import { SnackbarProvider } from 'notistack';
 import client from '../lib/client/apolloClient';
 import '../styles/global.scss';
 
@@ -11,7 +12,9 @@ function App({ Component, pageProps }) {
       </Head>
 
       <ApolloProvider client={client}>
-        <Component {...pageProps} />
+        <SnackbarProvider maxSnack={3}>
+          <Component {...pageProps} />
+        </SnackbarProvider>
       </ApolloProvider>
     </>
   );

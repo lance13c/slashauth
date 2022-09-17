@@ -1,4 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
+import { UserDocument } from '@lib/schemes/user';
 import { MongooseTicket } from '../schemes/ticket';
 
 interface GetTicketsResults {
@@ -29,6 +30,20 @@ export const GetTicketsByAssignee: TypedDocumentNode<GetTicketsResults> = gql`
         name
         avatarUrl
       }
+    }
+  }
+`;
+
+interface GetAllUsersResults {
+  userMany?: UserDocument[];
+}
+
+export const GetAllUsers: TypedDocumentNode<GetAllUsersResults> = gql`
+  query GetAllUsers {
+    userMany {
+      avatarUrl
+      name
+      _id
     }
   }
 `;

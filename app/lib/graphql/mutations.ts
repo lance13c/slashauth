@@ -1,5 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import { UserScheme } from '@lib/schemes/user';
+import { User } from '@lib/schemes/user';
 import { TicketProps } from '../schemes/ticket';
 
 interface AddTicketResults {
@@ -28,17 +28,18 @@ export const AddTicket: TypedDocumentNode<AddTicketResults, AddTicketVariables> 
 `;
 
 // USER
-interface AddTicketResults {
+interface AddUserResults {
   userCreateOne?: {
-    record: typeof UserScheme;
+    // TODO: see if I can use Mongoose Generated Schema instead
+    record: User;
   };
 }
 
-interface AddTicketVariables {
-  user: typeof UserScheme;
+interface AddUserVariables {
+  user: User;
 }
 
-export const CreateUser: TypedDocumentNode<AddTicketResults, AddTicketVariables> = gql`
+export const CreateUser: TypedDocumentNode<AddUserResults, AddUserVariables> = gql`
   mutation createUser($user: CreateOneUserInput!) {
     userCreateOne(record: $user) {
       record {

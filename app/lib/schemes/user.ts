@@ -16,6 +16,7 @@ export const UserScheme = new Schema({
   name: {
     type: String,
     trim: true,
+    required: true,
   },
 });
 

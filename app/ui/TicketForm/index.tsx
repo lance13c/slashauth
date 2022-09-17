@@ -1,8 +1,10 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { AddTicket } from '@lib/graphql/mutations';
+import { GetAllUsers } from '@lib/graphql/queries';
 import { TicketProps } from '@lib/schemes/ticket';
 import List from '@ui/List';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import TicketAssignee from './components/TicketAssignee';
 import styles from './index.module.scss';
 
 interface TicketFormProps {
@@ -25,6 +27,7 @@ const ErrorMessage = ({ children }) => {
   );
 };
 
+// TODO: Simplify this file
 const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) => {
   const {
     register,
@@ -40,11 +43,13 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
     },
   });
 
-  const onSubmit: SubmitHandler<Input> = (data) => {
-    console.log(data);
-    console.warn(Object.values(errors));
-    const hasErrors = Object.values(errors).length > 0;
+  const { data: userData } = useQuery(GetAllUsers, {
+    fetchPolicy: 'no-cache',
+  });
+  const users = userData?.userMany || [];
 
+  const onSubmit: SubmitHandler<Input> = (data) => {
+    const hasErrors = Object.values(errors).length > 0;
     if (hasErrors) return;
 
     addTicket({
@@ -113,8 +118,20 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
         }}
       >
         <label htmlFor='assigneeId'>Assignee</label>
-        <input name='assigneeId' defaultValue='' {...register('assigneeId')} />
         {errors?.assigneeId?.message && <p>{errors.assigneeId.message}</p>}
+        <select name='assigneeId' {...register('assigneeId')}>
+          {/* <option value='BACKLOG'>BACKLOG</option>
+          <option value='IN_PROGRESS'>IN_PROGRESS</option>
+          <option value='COMPLETED'>COMPLETED</option>
+          <option value='BLOCKED'>BLOCKED</option> */}
+          {users.map((user) => {
+            return (
+              <option key={user?._id} value={user.name}>
+                <TicketAssignee user={user} />
+              </option>
+            );
+          })}
+        </select>
       </List>
 
       <input type='submit' />

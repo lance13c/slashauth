@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@floating-ui/react-dom": "^1.0.0",
     "@floating-ui/react-dom-interactions": "^0.9.3",
     "@graphql-yoga/node": "^2.11.2",
@@ -22,6 +24,7 @@
     "mongodb": "^4.9.1",
     "mongoose": "^6.6.0",
     "next": "12.2.5",
+    "notistack": "^2.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.35.0",

@@ -7,13 +7,22 @@ import ListItem from '@ui/ListItem';
 import Main from '@ui/Main';
 import PageLayout from '@ui/PageLayout';
 import Ticket from '@ui/Ticket';
+import UserForm from '@ui/UserForm';
+import { useSnackbar } from 'notistack';
 
 export default function Home() {
   const { data, error, loading } = useQuery(GetTickets);
+  const { enqueueSnackbar } = useSnackbar();
   const tickets = data?.ticketMany ?? [];
 
   if (error) return <div>Failed to load</div>;
   if (loading) return <div>Loading...</div>;
+
+  const handleOnComplete = () => {
+    enqueueSnackbar('User Successfully Created', {
+      variant: 'success',
+    });
+  };
 
   return (
     <PageLayout>
@@ -24,6 +33,7 @@ export default function Home() {
               marginTop: '2rem',
             }}
           ></div>
+          <UserForm onComplete={handleOnComplete} />
           <List
             style={{
               flexDirection: 'column',
