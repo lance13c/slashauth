@@ -26,6 +26,7 @@ importers:
       graphql: ^16.6.0
       graphql-compose: ^9.0.9
       graphql-compose-mongoose: ^9.7.1
+      lodash: ^4.17.21
       micro: ^9.4.1
       mongodb: ^4.9.1
       mongoose: ^6.6.0
@@ -53,6 +54,7 @@ importers:
       graphql: 16.6.0
       graphql-compose: 9.0.9_graphql@16.6.0
       graphql-compose-mongoose: 9.7.1_qzkk6fnx56mklkwr2umiuxhoeu
+      lodash: 4.17.21
       micro: 9.4.1
       mongodb: 4.9.1
       mongoose: 6.6.1
@@ -2362,6 +2364,10 @@ packages:
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
     dev: true
+
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /loglevel/1.8.0:
     resolution: {integrity: sha512-G6A/nJLRgWOuuwdNuA6koovfEV1YpqqAG4pRUlFaz3jj2QNZ8M4vBqnVA+HBTmU/AMNUtlOsMmSpF6NyOjztbA==}
