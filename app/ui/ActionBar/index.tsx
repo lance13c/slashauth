@@ -47,8 +47,6 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const handleOnUserDropdownChange = async (newValue: DropdownOption) => {
     const userId = newValue?.value;
 
-    console.log('USERID: ' + userId);
-
     setFilterState((preFilter) => {
       return {
         ...preFilter,

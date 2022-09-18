@@ -15,7 +15,6 @@ const TicketAssignee: React.FunctionComponent<TicketAssigneeProps> = ({ user }) 
     const nameList = name.split(' ');
     const tempInitials = nameList
       .map((value) => {
-        console.log('value', value);
         return value.at(0);
       })
       .join(',');

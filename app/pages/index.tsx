@@ -9,24 +9,27 @@ import ListItem from '@ui/ListItem';
 import Main from '@ui/Main';
 import PageLayout from '@ui/PageLayout';
 import Ticket from '@ui/Ticket';
+import { useEffect } from 'react';
 
 export default function Home() {
-  const { filterState, setFilterState } = useFilterContext();
+  const { filterState } = useFilterContext();
 
   // TODO find better way of distilling the filters
   const filters: GetFilteredTicketsVariables['filters'] = {};
-  if (filterState.assigneeId !== null) {
-    filters.assignee = {
-      _id: filterState.assigneeId || null,
-    };
+  if (filterState.assigneeId) {
+    filters.assigneeId = filterState.assigneeId;
   }
 
-  const { data, error, loading } = useQuery(GetFilteredTickets, {
+  const { data, error, loading, refetch } = useQuery(GetFilteredTickets, {
     variables: {
       filters: filters,
     },
   });
   const tickets = data?.ticketMany ?? [];
+
+  useEffect(() => {
+    refetch();
+  }, [filterState]);
 
   if (error) return <div>Failed to load</div>;
   if (loading) return <div>Loading...</div>;

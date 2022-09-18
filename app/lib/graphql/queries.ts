@@ -50,9 +50,7 @@ export const GetAllUsers: TypedDocumentNode<GetAllUsersResults> = gql`
 
 export interface GetFilteredTicketsVariables {
   filters?: {
-    assignee?: {
-      _id: string;
-    };
+    assigneeId?: string;
   };
 }
 interface GetFilteredTicketsResults {
@@ -65,6 +63,7 @@ export const GetFilteredTickets: TypedDocumentNode<GetFilteredTicketsResults, Ge
       title
       description
       status
+      assigneeId
       assignee {
         _id
         name

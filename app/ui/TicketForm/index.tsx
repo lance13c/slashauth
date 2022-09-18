@@ -37,7 +37,6 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
   } = useForm<Input>();
 
   const [addTicket, error] = useMutation(AddTicket, {
-    refetchQueries: ['GetTickets'],
     onCompleted: () => {
       onComplete();
     },
@@ -58,9 +57,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           title: data.title,
           description: data.description,
           status: data.status,
-          assignee: {
-            name: data.assigneeId,
-          },
+          assigneeId: data.assigneeId,
         },
       },
     });
@@ -128,7 +125,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           <select name='assigneeId' {...register('assigneeId')}>
             {users.map((user) => {
               return (
-                <option key={user?._id} value={user.name}>
+                <option key={user._id} value={user._id}>
                   {user.name}
                 </option>
               );

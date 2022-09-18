@@ -1,6 +1,6 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
 import { User } from '@lib/schemes/user';
-import { TicketProps } from '../schemes/ticket';
+import { StatusType, TicketProps } from '../schemes/ticket';
 
 interface AddTicketResults {
   ticketCreateOne?: {
@@ -9,7 +9,12 @@ interface AddTicketResults {
 }
 
 interface AddTicketVariables {
-  record: TicketProps;
+  record: {
+    title: string;
+    description: string;
+    status: StatusType;
+    assigneeId: string;
+  };
 }
 
 export const AddTicket: TypedDocumentNode<AddTicketResults, AddTicketVariables> = gql`
@@ -19,7 +24,9 @@ export const AddTicket: TypedDocumentNode<AddTicketResults, AddTicketVariables> 
         title
         description
         status
+        assigneeId
         assignee {
+          avatarUrl
           name
         }
       }
