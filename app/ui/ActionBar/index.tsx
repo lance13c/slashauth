@@ -2,8 +2,11 @@ import { useQuery } from '@apollo/client';
 import client from '@lib/client/apolloClient';
 import { GetAllUsers } from '@lib/graphql/queries';
 import { STATUS_OPTIONS } from '@lib/helper/constants';
+import Column from '@ui/Column';
 import { useFilterContext } from '@ui/context/FilterContext';
 import Dropdown, { DropdownOption } from '@ui/Dropdown';
+import { listItemVariant } from '@ui/ListItem';
+import Row from '@ui/Row';
 import UserForm from '@ui/UserForm';
 import { motion } from 'framer-motion';
 import { useSnackbar } from 'notistack';
@@ -14,7 +17,7 @@ import styles from './index.module.scss';
 interface ActionBarProps {}
 
 const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
-  const [isUserFormEnabled, setIsTicketFormEnabled] = React.useState(false);
+  const [isUserFormEnabled, setIsUserFormEnabled] = React.useState(false);
   const { setFilterState } = useFilterContext();
 
   const { data: userData } = useQuery(GetAllUsers, {
@@ -33,11 +36,11 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleOnClickCreateTicket = () => {
-    setIsTicketFormEnabled(true);
+    setIsUserFormEnabled(true);
   };
 
   const handleOnClose = () => {
-    setIsTicketFormEnabled(false);
+    setIsUserFormEnabled(false);
   };
 
   const handleOnComplete = () => {
@@ -78,10 +81,15 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   };
 
   return (
-    <div id='action-bar-list'>
-      <div id='action-bar-list-item'>
+    <Row
+      style={{
+        justifyContent: 'space-between',
+      }}
+    >
+      <Column>
         {!isUserFormEnabled && (
           <motion.button
+            variants={listItemVariant}
             layoutId='action-bar-user-primary'
             onClick={handleOnClickCreateTicket}
             className={styles.createUserButton}
@@ -94,24 +102,25 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
             Close
           </motion.button>
         )}
-      </div>
-      <Dropdown
-        id='user-dropdown'
-        placeholder='Filter By User'
-        name='user-dropdown'
-        options={userOptions}
-        onChange={handleOnUserDropdownChange}
-      />
-      <Dropdown
-        id='status-dropdown'
-        placeholder='Filter By Status'
-        name='status-dropdown'
-        options={STATUS_OPTIONS}
-        onChange={handleOnStatusDropdownChange}
-      />
-
-      {isUserFormEnabled && <UserForm onComplete={handleOnComplete} />}
-    </div>
+        {isUserFormEnabled && <UserForm onComplete={handleOnComplete} />}
+      </Column>
+      <Row>
+        <Dropdown
+          id='user-dropdown'
+          placeholder='Filter By User'
+          name='user-dropdown'
+          options={userOptions}
+          onChange={handleOnUserDropdownChange}
+        />
+        <Dropdown
+          id='status-dropdown'
+          placeholder='Filter By Status'
+          name='status-dropdown'
+          options={STATUS_OPTIONS}
+          onChange={handleOnStatusDropdownChange}
+        />
+      </Row>
+    </Row>
   );
 };
 

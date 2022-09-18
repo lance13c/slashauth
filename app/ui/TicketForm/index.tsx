@@ -3,7 +3,8 @@ import { AddTicket } from '@lib/graphql/mutations';
 import { GetAllUsers } from '@lib/graphql/queries';
 import { TicketProps } from '@lib/schemes/ticket';
 import SubmitButton from '@ui/buttons/SubmitButton';
-import List from '@ui/List';
+import Column from '@ui/Column';
+import Row from '@ui/Row';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
 
@@ -64,33 +65,17 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
     });
   };
 
-  console.log(errors);
-
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)} className={styles.ticketForm}>
       {/* register your input into the hook by invoking the "register" function */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: '1.5rem',
-        }}
-      >
-        <List
-          id='ticket-form-list-title'
-          style={{
-            flexDirection: 'column',
-            width: 'initial',
-            padding: 0,
-          }}
-        >
+      <Row>
+        <Column>
           <label htmlFor='title'>Title</label>
           <input name='title' autoFocus defaultValue='' required {...register('title', { required: true })} />
           {errors?.title?.message && <ErrorMessage>{errors.title.message}</ErrorMessage>}
-        </List>
-        <List
-          id='ticket-form-list-description'
+        </Column>
+        <Column
           style={{
             flexDirection: 'column',
             width: 'initial',
@@ -100,9 +85,8 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           <label htmlFor='description'>Description</label>
           <textarea name='description' defaultValue='' rows={2} {...register('description')} />
           {errors?.description?.message && <p>{errors.description.message}</p>}
-        </List>
-        <List
-          id='ticket-form-list-status'
+        </Column>
+        <Column
           style={{
             flexDirection: 'column',
             width: 'initial',
@@ -117,15 +101,8 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
             <option value='BLOCKED'>BLOCKED</option>
           </select>
           {errors?.status?.message && <p>{errors.status.message}</p>}
-        </List>
-        <List
-          id='ticket-form-list-assignee'
-          style={{
-            flexDirection: 'column',
-            width: 'initial',
-            padding: 0,
-          }}
-        >
+        </Column>
+        <Column>
           <label htmlFor='assigneeId'>Assignee</label>
           <select name='assigneeId' {...register('assigneeId')}>
             {users.map((user) => {
@@ -137,8 +114,8 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
             })}
           </select>
           {errors?.assigneeId?.message && <p>{errors.assigneeId.message}</p>}
-        </List>
-      </div>
+        </Column>
+      </Row>
       <SubmitButton />
     </form>
   );

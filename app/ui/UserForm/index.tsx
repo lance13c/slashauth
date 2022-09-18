@@ -2,7 +2,8 @@ import { useMutation } from '@apollo/client';
 import { CreateUser } from '@lib/graphql/mutations';
 import { User } from '@lib/schemes/user';
 import SubmitButton from '@ui/buttons/SubmitButton';
-import List from '@ui/List';
+import Column from '@ui/Column';
+import ErrorMessage from '@ui/ErrorMessage';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
 
@@ -11,18 +12,6 @@ interface UserFormProps {
 }
 
 interface Input extends User {}
-
-const ErrorMessage = ({ children }) => {
-  return (
-    <p
-      style={{
-        color: 'darkred',
-      }}
-    >
-      {children}
-    </p>
-  );
-};
 
 const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
   const {
@@ -77,18 +66,11 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
       </h3>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.userForm}>
         {/* register your input into the hook by invoking the "register" function */}
-        <List
-          id='user-form-list'
-          style={{
-            flexDirection: 'column',
-            width: 'initial',
-            padding: 0,
-          }}
-        >
+        <Column>
           <label htmlFor='name'>Name</label>
           <input name='name' autoFocus defaultValue='' required {...register('name', { required: true })} />
           {errors?.name?.message && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-        </List>
+        </Column>
         <SubmitButton />
       </form>
     </section>

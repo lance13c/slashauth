@@ -1,5 +1,5 @@
+import Column from '@ui/Column';
 import List from '@ui/List';
-import ListItem from '@ui/ListItem';
 import TicketForm from '@ui/TicketForm';
 import * as React from 'react';
 import styles from './index.module.scss';
@@ -18,13 +18,11 @@ const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
   };
 
   return (
-    <List id='create-ticket-list'>
+    <Column>
       {!isTicketFormEnabled && (
-        <ListItem id='create-ticket-list-item'>
-          <button onClick={handleOnClickCreateTicket} className={styles.createTicketButton}>
-            Create Ticket
-          </button>
-        </ListItem>
+        <button onClick={handleOnClickCreateTicket} className={styles.createTicketButton}>
+          Create Ticket
+        </button>
       )}
       {isTicketFormEnabled && (
         <>
@@ -37,17 +35,14 @@ const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
               }}
             >
               <button className={styles.closeButton} onClick={handleOnClose}>
-                X
+                Close
               </button>
             </div>
-
-            <ListItem id='create-ticket-list-item-close'>
-              <TicketForm onComplete={handleOnClose} />
-            </ListItem>
           </List>
+          <TicketForm onComplete={handleOnClose} />
         </>
       )}
-    </List>
+    </Column>
   );
 };
 
