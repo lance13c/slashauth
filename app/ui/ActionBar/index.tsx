@@ -3,8 +3,6 @@ import client from '@lib/client/apolloClient';
 import { GetAllUsers } from '@lib/graphql/queries';
 import { useFilterContext } from '@ui/context/FilterContext';
 import Dropdown, { DropdownOption } from '@ui/Dropdown';
-import List from '@ui/List';
-import ListItem from '@ui/ListItem';
 import UserForm from '@ui/UserForm';
 import { motion } from 'framer-motion';
 import { useSnackbar } from 'notistack';
@@ -60,8 +58,8 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   };
 
   return (
-    <List id='action-bar-list'>
-      <ListItem id='action-bar-list-item'>
+    <div id='action-bar-list'>
+      <div id='action-bar-list-item'>
         {!isUserFormEnabled && (
           <motion.button
             layoutId='action-bar-user-primary'
@@ -76,24 +74,17 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
             Close
           </motion.button>
         )}
-      </ListItem>
+      </div>
       <Dropdown
+        id='user-dropdown'
         placeholder='Filter By User'
         name='user-dropdown'
         options={userOptions}
         onChange={handleOnUserDropdownChange}
       />
 
-      {isUserFormEnabled && (
-        <>
-          <List id='user-form-list'>
-            <ListItem id='user-form-list-item'>
-              <UserForm onComplete={handleOnComplete} />
-            </ListItem>
-          </List>
-        </>
-      )}
-    </List>
+      {isUserFormEnabled && <UserForm onComplete={handleOnComplete} />}
+    </div>
   );
 };
 

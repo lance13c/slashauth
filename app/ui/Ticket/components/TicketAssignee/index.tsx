@@ -1,6 +1,8 @@
 import { User } from '@lib/schemes/user';
+import Column from '@ui/Column';
 import Tooltip from '@ui/Tooltip';
 import * as React from 'react';
+import TicketHeader from '../TicketHeader';
 import styles from './index.module.scss';
 
 interface TicketAssigneeProps {
@@ -23,15 +25,15 @@ const TicketAssignee: React.FunctionComponent<TicketAssigneeProps> = ({ user }) 
   }, [name]);
 
   return (
-    <div className={styles.assigneeContainer}>
+    <Column>
       {/* <AvatarImage /> */}
-      {/* <TicketHeader title='Assignee' /> */}
+      <TicketHeader title='Assignee' />
       <Tooltip label={name}>
         <div className={styles.avatar}>
           <p>{initials}</p>
         </div>
       </Tooltip>
-    </div>
+    </Column>
   );
 };
 

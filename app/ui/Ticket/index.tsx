@@ -1,4 +1,5 @@
 import { MongooseTicket } from '@lib/schemes/ticket';
+import Row from '@ui/Row';
 import { motion } from 'framer-motion';
 import React from 'react';
 import TicketAssignee from './components/TicketAssignee';
@@ -12,21 +13,23 @@ interface TicketProps extends MongooseTicket {}
 const Ticket: React.FunctionComponent<TicketProps> = ({ _id, title, description, status, assignee }) => {
   return (
     <motion.div className={styles.ticket}>
-      <div>
+      <div
+        style={{
+          flex: 1,
+        }}
+      >
         <TicketTitle title={title} />
         <div style={{ height: '0.5rem' }}></div>
         <TicketDescription description={description} />
       </div>
-      <div
+      <Row
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1rem',
+          gap: '3rem',
         }}
       >
         <TicketStatus status={status} />
         <TicketAssignee user={assignee} />
-      </div>
+      </Row>
     </motion.div>
   );
 };

@@ -7,6 +7,7 @@ export interface DropdownOption {
   label: string;
 }
 interface DropdownProps {
+  id: string;
   name: string;
   options: OptionsOrGroups<DropdownOption, GroupBase<DropdownOption>>;
   isLoading?: boolean;
@@ -19,6 +20,7 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
+  id,
   name,
   options,
   isClearable = true,
@@ -31,6 +33,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
 }) => {
   return (
     <Select
+      instanceId={id}
       className={styles.dropdown}
       classNamePrefix='slashauth'
       isDisabled={isDisabled}

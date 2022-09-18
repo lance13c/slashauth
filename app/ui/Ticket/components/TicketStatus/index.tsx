@@ -1,4 +1,6 @@
+import Column from '@ui/Column';
 import * as React from 'react';
+import TicketHeader from '../TicketHeader';
 import styles from './index.module.scss';
 
 interface TicketStatusProps {
@@ -7,9 +9,10 @@ interface TicketStatusProps {
 
 const TicketStatus: React.FunctionComponent<TicketStatusProps> = ({ status }) => {
   return (
-    <div className={styles.statusContainer}>
+    <Column>
+      <TicketHeader title='Status' />
       <p className={styles.statusText}>{status}</p>
-    </div>
+    </Column>
   );
 };
 

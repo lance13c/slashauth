@@ -12,6 +12,7 @@ const TicketHeader: React.FunctionComponent<TicketHeaderProps> = ({ title }) => 
         fontWeight: 'bold',
         fontSize: '0.8rem',
         color: 'grey',
+        margin: 0,
       }}
     >
       {title}
