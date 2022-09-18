@@ -9,6 +9,7 @@ interface GetTicketsResults {
 export const GetTickets: TypedDocumentNode<GetTicketsResults> = gql`
   query GetTickets {
     ticketMany {
+      _id
       title
       description
       status
@@ -23,6 +24,7 @@ export const GetTickets: TypedDocumentNode<GetTicketsResults> = gql`
 export const GetTicketsByAssignee: TypedDocumentNode<GetTicketsResults> = gql`
   query GetTickets {
     ticketMany {
+      _id
       title
       description
       status
@@ -60,6 +62,7 @@ interface GetFilteredTicketsResults {
 export const GetFilteredTickets: TypedDocumentNode<GetFilteredTicketsResults, GetFilteredTicketsVariables> = gql`
   query GetFilteredTickets($filters: FilterFindManyTicketInput) {
     ticketMany(filter: $filters) {
+      _id
       title
       description
       status

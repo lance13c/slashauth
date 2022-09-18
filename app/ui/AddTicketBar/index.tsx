@@ -18,9 +18,9 @@ const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
   };
 
   return (
-    <List>
+    <List id='create-ticket-list'>
       {!isTicketFormEnabled && (
-        <ListItem>
+        <ListItem id='create-ticket-list-item'>
           <button onClick={handleOnClickCreateTicket} className={styles.createTicketButton}>
             Create Ticket
           </button>
@@ -28,7 +28,7 @@ const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
       )}
       {isTicketFormEnabled && (
         <>
-          <List>
+          <List id='create-ticket-list-item'>
             <div
               style={{
                 display: 'flex',
@@ -41,7 +41,7 @@ const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
               </button>
             </div>
 
-            <ListItem>
+            <ListItem id='create-ticket-list-item-close'>
               <TicketForm onComplete={handleOnClose} />
             </ListItem>
           </List>

@@ -37,6 +37,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
   } = useForm<Input>();
 
   const [addTicket, error] = useMutation(AddTicket, {
+    refetchQueries: ['GetFilteredTickets'],
     onCompleted: () => {
       onComplete();
     },
@@ -77,6 +78,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
         }}
       >
         <List
+          id='ticket-form-list-title'
           style={{
             flexDirection: 'column',
             width: 'initial',
@@ -88,6 +90,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           {errors?.title?.message && <ErrorMessage>{errors.title.message}</ErrorMessage>}
         </List>
         <List
+          id='ticket-form-list-description'
           style={{
             flexDirection: 'column',
             width: 'initial',
@@ -99,6 +102,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           {errors?.description?.message && <p>{errors.description.message}</p>}
         </List>
         <List
+          id='ticket-form-list-status'
           style={{
             flexDirection: 'column',
             width: 'initial',
@@ -115,6 +119,7 @@ const TicketForm: React.FunctionComponent<TicketFormProps> = ({ onComplete }) =>
           {errors?.status?.message && <p>{errors.status.message}</p>}
         </List>
         <List
+          id='ticket-form-list-assignee'
           style={{
             flexDirection: 'column',
             width: 'initial',

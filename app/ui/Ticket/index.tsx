@@ -1,5 +1,6 @@
 import { MongooseTicket } from '@lib/schemes/ticket';
 import { motion } from 'framer-motion';
+import React from 'react';
 import TicketAssignee from './components/TicketAssignee';
 import TicketDescription from './components/TicketDescription';
 import TicketStatus from './components/TicketStatus';
@@ -30,4 +31,4 @@ const Ticket: React.FunctionComponent<TicketProps> = ({ _id, title, description,
   );
 };
 
-export default Ticket;
+export default React.memo(Ticket);

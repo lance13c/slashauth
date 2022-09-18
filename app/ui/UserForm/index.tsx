@@ -33,7 +33,7 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
   } = useForm<Input>();
 
   const [addUser, error] = useMutation(CreateUser, {
-    refetchQueries: ['GetTickets'],
+    refetchQueries: ['GetFilteredTickets', 'GetAllUsers'],
     onCompleted: () => {
       if (onComplete) {
         onComplete();
@@ -78,6 +78,7 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
       <form onSubmit={handleSubmit(onSubmit)} className={styles.userForm}>
         {/* register your input into the hook by invoking the "register" function */}
         <List
+          id='user-form-list'
           style={{
             flexDirection: 'column',
             width: 'initial',

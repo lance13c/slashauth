@@ -60,8 +60,8 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   };
 
   return (
-    <List>
-      <ListItem>
+    <List id='action-bar-list'>
+      <ListItem id='action-bar-list-item'>
         {!isUserFormEnabled && (
           <motion.button
             layoutId='action-bar-user-primary'
@@ -77,12 +77,17 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
           </motion.button>
         )}
       </ListItem>
-      <Dropdown name='user-dropdown' options={userOptions} onChange={handleOnUserDropdownChange} />
+      <Dropdown
+        placeholder='Filter By User'
+        name='user-dropdown'
+        options={userOptions}
+        onChange={handleOnUserDropdownChange}
+      />
 
       {isUserFormEnabled && (
         <>
-          <List>
-            <ListItem>
+          <List id='user-form-list'>
+            <ListItem id='user-form-list-item'>
               <UserForm onComplete={handleOnComplete} />
             </ListItem>
           </List>
