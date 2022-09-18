@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client';
+import client from '@lib/client/apolloClient';
 import { GetAllUsers } from '@lib/graphql/queries';
 import { useFilterContext } from '@ui/context/FilterContext';
 import Dropdown, { DropdownOption } from '@ui/Dropdown';
@@ -14,7 +15,7 @@ interface ActionBarProps {}
 
 const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
   const [isUserFormEnabled, setIsTicketFormEnabled] = React.useState(false);
-  const { filterState, setFilterState } = useFilterContext();
+  const { setFilterState } = useFilterContext();
 
   const { data: userData } = useQuery(GetAllUsers, {
     fetchPolicy: 'no-cache',
@@ -43,23 +44,20 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
     });
   };
 
-  const handleOnFilterChange = () => {
-    setFilterState((preFilter) => {
-      return {
-        ...preFilter,
-        // Add other filters
-      };
-    });
-  };
-
-  const handleOnUserDropdownChange = (newValue: DropdownOption) => {
+  const handleOnUserDropdownChange = async (newValue: DropdownOption) => {
     const userId = newValue?.value;
+
+    console.log('USERID: ' + userId);
 
     setFilterState((preFilter) => {
       return {
         ...preFilter,
         assigneeId: userId,
       };
+    });
+
+    await client.refetchQueries({
+      include: ['GetFilteredTickets'],
     });
   };
 

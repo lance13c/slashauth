@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { User, UserScheme } from './user';
+import { User } from './user';
 
 const { Schema } = mongoose;
 export type StatusType = 'BACKLOG' | 'IN_PROGRESS' | 'COMPLETED' | 'BLOCKED';
@@ -10,6 +10,7 @@ export interface TicketProps {
   title: string;
   description: string;
   status: StatusType;
+  assigneeId: string;
   assignee: User;
 }
 
@@ -37,8 +38,5 @@ export const ticketScheme = new Schema({
     trim: true,
     required: true,
   },
-  assignee: {
-    type: UserScheme,
-    required: true,
-  },
+  assigneeId: { type: Schema.Types.ObjectId, ref: 'User' },
 });

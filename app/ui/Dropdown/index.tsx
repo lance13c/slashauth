@@ -14,6 +14,7 @@ interface DropdownProps {
   isRtl?: boolean;
   isSearchable?: boolean;
   isClearable?: boolean;
+  placeholder?: string;
   onChange?: (newValue: DropdownOption, actionMeta: ActionMeta<DropdownOption>) => void;
 }
 
@@ -25,6 +26,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   isLoading = false,
   isRtl = false,
   isSearchable = true,
+  placeholder = 'Select...',
   onChange,
 }) => {
   return (
@@ -37,6 +39,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
       isRtl={isRtl}
       isSearchable={isSearchable}
       name={name}
+      placeholder={placeholder}
       options={options}
       onChange={onChange}
     />
