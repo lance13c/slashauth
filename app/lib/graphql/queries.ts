@@ -53,6 +53,7 @@ export const GetAllUsers: TypedDocumentNode<GetAllUsersResults> = gql`
 export interface GetFilteredTicketsVariables {
   filters?: {
     assigneeId?: string;
+    status?: string;
   };
 }
 interface GetFilteredTicketsResults {

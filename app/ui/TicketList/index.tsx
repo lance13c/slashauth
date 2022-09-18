@@ -17,6 +17,9 @@ const TicketList: React.FunctionComponent<TicketListProps> = () => {
   if (filterState.assigneeId) {
     filters.assigneeId = filterState.assigneeId;
   }
+  if (filterState.status) {
+    filters.status = filterState.status;
+  }
 
   const { data, error, loading, refetch } = useQuery(GetFilteredTickets, {
     variables: {

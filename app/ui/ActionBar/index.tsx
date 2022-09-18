@@ -1,12 +1,14 @@
 import { useQuery } from '@apollo/client';
 import client from '@lib/client/apolloClient';
 import { GetAllUsers } from '@lib/graphql/queries';
+import { STATUS_OPTIONS } from '@lib/helper/constants';
 import { useFilterContext } from '@ui/context/FilterContext';
 import Dropdown, { DropdownOption } from '@ui/Dropdown';
 import UserForm from '@ui/UserForm';
 import { motion } from 'framer-motion';
 import { useSnackbar } from 'notistack';
 import * as React from 'react';
+import { StatusType } from 'types';
 import styles from './index.module.scss';
 
 interface ActionBarProps {}
@@ -25,6 +27,8 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
       value: user._id,
     };
   });
+
+  console.log(STATUS_OPTIONS);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -57,6 +61,22 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
     });
   };
 
+  const handleOnStatusDropdownChange = async (newValue: DropdownOption) => {
+    // TODO: find alternative to casting
+    const status = newValue?.value as StatusType;
+
+    setFilterState((preFilter) => {
+      return {
+        ...preFilter,
+        status: status,
+      };
+    });
+
+    await client.refetchQueries({
+      include: ['GetFilteredTickets'],
+    });
+  };
+
   return (
     <div id='action-bar-list'>
       <div id='action-bar-list-item'>
@@ -81,6 +101,13 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
         name='user-dropdown'
         options={userOptions}
         onChange={handleOnUserDropdownChange}
+      />
+      <Dropdown
+        id='status-dropdown'
+        placeholder='Filter By Status'
+        name='status-dropdown'
+        options={STATUS_OPTIONS}
+        onChange={handleOnStatusDropdownChange}
       />
 
       {isUserFormEnabled && <UserForm onComplete={handleOnComplete} />}

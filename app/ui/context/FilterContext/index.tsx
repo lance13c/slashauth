@@ -1,5 +1,5 @@
-import { StatusType } from '@lib/schemes/ticket';
 import { createContext, Dispatch, SetStateAction, useContext, useMemo, useState } from 'react';
+import { StatusType } from 'types';
 
 interface FilterState {
   assigneeId: null | string;

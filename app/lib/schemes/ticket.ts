@@ -1,9 +1,9 @@
+import { STATUS_TYPES } from '@lib/helper/constants';
 import mongoose from 'mongoose';
+import { StatusType } from 'types';
 import { User } from './user';
 
 const { Schema } = mongoose;
-export type StatusType = 'BACKLOG' | 'IN_PROGRESS' | 'COMPLETED' | 'BLOCKED';
-export const STATUS_TYPES = ['BACKLOG', 'IN_PROGRESS', 'COMPLETED', 'BLOCKED'];
 
 // TODO: find better name than TicketProps
 export interface TicketProps {
