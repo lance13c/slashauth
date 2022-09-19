@@ -62,7 +62,7 @@
 1. In the **database** folder add a **data** folder. Then inside the **data** folder add a **db** folder.
    ```bash
    ├──app
-   ├──database
+   └── database
       └── data
           └── db
    ```
