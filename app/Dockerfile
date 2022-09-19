@@ -5,7 +5,7 @@ FROM node:18.9-alpine3.15
 RUN apk --no-cache add --virtual .builds-deps build-base python3 curl
 
 # Create and change to the app directory.
-WORKDIR /
+WORKDIR /app
 
 ## TODO: find way to copy pnpm-lock.yaml 
 
@@ -16,6 +16,8 @@ WORKDIR /
 
 # Copy local code to the container image.
 COPY . .
+
+RUN rm -rf ./database
 
 RUN npm install -g pnpm
 RUN pnpm config set auto-install-peers true

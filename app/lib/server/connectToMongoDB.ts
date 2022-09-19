@@ -19,11 +19,20 @@ export async function connectToDatabase() {
   // Connect to cluster
 
   try {
-    mongoose.connect(serverEnvs.MONGODB_URI, { autoIndex: true, dbName: serverEnvs.MONGODB_DB }, (error) => {
-      if (error) {
-        console.error(error);
+    mongoose.connect(
+      serverEnvs.MONGODB_URI,
+      {
+        autoIndex: true,
+        dbName: serverEnvs.MONGO_INITDB_DATABASE,
+        pass: serverEnvs.MONGO_INITDB_ROOT_PASSWORD,
+        user: serverEnvs.MONGO_INITDB_ROOT_USERNAME,
+      },
+      (error) => {
+        if (error) {
+          console.error(error);
+        }
       }
-    });
+    );
     console.info('mongodb database started');
     console.info('mongodbURI');
     console.info('dbName');

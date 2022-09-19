@@ -6,6 +6,7 @@ services:
     ports:
       - "3000:3000"
     env_file:
+      - ./app/.env
       - ./app/.docker.env 
     networks:
       - internal
@@ -24,7 +25,8 @@ services:
     volumes:
       - mongodb-vol:/data/db
     env_file:
-      - ./database/.env
+      - ./app/.env
+      - ./app/.docker.env 
     networks:
       - internal
     expose:
