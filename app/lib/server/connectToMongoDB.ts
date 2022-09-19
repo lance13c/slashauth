@@ -10,22 +10,16 @@ export async function connectToDatabase() {
     return cachedConnection;
   }
 
-  // // set the connection options
-  // const opts = {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  // };
-
-  // Connect to cluster
-
   try {
     mongoose.connect(
       serverEnvs.MONGODB_URI,
       {
         autoIndex: true,
         dbName: serverEnvs.MONGO_INITDB_DATABASE,
-        pass: serverEnvs.MONGO_INITDB_ROOT_PASSWORD,
-        user: serverEnvs.MONGO_INITDB_ROOT_USERNAME,
+        auth: {
+          password: serverEnvs.MONGO_INITDB_ROOT_PASSWORD,
+          username: serverEnvs.MONGO_INITDB_ROOT_USERNAME,
+        },
       },
       (error) => {
         if (error) {
