@@ -59,6 +59,13 @@
    ```
    pnpm install
    ```
+1. In the **database** folder add a **data** folder. Then inside the data folder add a **db** folder.
+   ```bash
+   ├──app
+   ├──database
+      └── data
+          └── db
+   ```
 
 ## How To Run Development
 
