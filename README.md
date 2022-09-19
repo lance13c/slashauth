@@ -62,7 +62,7 @@
 
 ## How To Run Development
 
-1. Run development server
+1. In the root project directory run development server. This will launch both the database and web app.
    ```
    pnpm dev
    ```
