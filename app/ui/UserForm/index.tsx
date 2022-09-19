@@ -4,6 +4,7 @@ import { User } from '@lib/schemes/user';
 import SubmitButton from '@ui/buttons/SubmitButton';
 import Column from '@ui/Column';
 import ErrorMessage from '@ui/ErrorMessage';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
 
