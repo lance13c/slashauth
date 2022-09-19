@@ -6,11 +6,7 @@
     "app/*",
     "database/*"
   ],
-  "scripts": {
-    "build": "pnpm run build",
-    "lint": "pnpm run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
+  "scripts": {},
   "devDependencies": {
     "prettier": "latest"
   },
