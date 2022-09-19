@@ -1,6 +1,7 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
 import { User } from '@lib/schemes/user';
-import { StatusType, TicketProps } from '../schemes/ticket';
+import { StatusType } from 'types';
+import { TicketProps } from '../schemes/ticket';
 
 interface AddTicketResults {
   ticketCreateOne?: {

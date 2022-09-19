@@ -2,8 +2,8 @@ version: "3.9"
 
 services:
   next-app:
-    build: ./apps/web
-    command: sh -c "pnpm install && npx sequelize-cli db:migrate && pnpm run dev"
+    build: ./app
+    command: sh -c "pnpm install && pnpm build && pnpm start"
     ports:
       - "3000:3000"
     env_file:

@@ -24,7 +24,6 @@ COPY . .
 RUN rm -rf src
 
 EXPOSE 3000
-EXPOSE 3001
 
 # Run the web service on container startup.
 CMD [ "pnpm run dev" ]
