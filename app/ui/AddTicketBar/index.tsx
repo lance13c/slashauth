@@ -1,6 +1,7 @@
 import Column from '@ui/Column';
 import List from '@ui/List';
 import TicketForm from '@ui/TicketForm';
+import { useSnackbar } from 'notistack';
 import * as React from 'react';
 import styles from './index.module.scss';
 
@@ -8,12 +9,20 @@ interface AddTicketBarProps {}
 
 const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
   const [isTicketFormEnabled, setIsTicketFormEnabled] = React.useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleOnClickCreateTicket = () => {
     setIsTicketFormEnabled(true);
   };
 
   const handleOnClose = () => {
+    setIsTicketFormEnabled(false);
+  };
+
+  const handleOnComplete = () => {
+    enqueueSnackbar('Ticket Successfully Created', {
+      variant: 'success',
+    });
     setIsTicketFormEnabled(false);
   };
 
@@ -39,7 +48,7 @@ const AddTicketBar: React.FunctionComponent<AddTicketBarProps> = () => {
               </button>
             </div>
           </List>
-          <TicketForm onComplete={handleOnClose} />
+          <TicketForm onComplete={handleOnComplete} />
         </>
       )}
     </Column>

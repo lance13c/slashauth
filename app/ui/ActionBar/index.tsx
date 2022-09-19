@@ -47,6 +47,7 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
     enqueueSnackbar('User Successfully Created', {
       variant: 'success',
     });
+    setIsUserFormEnabled(false);
   };
 
   const handleOnUserDropdownChange = async (newValue: DropdownOption) => {

@@ -19,7 +19,8 @@ const TicketAssignee: React.FunctionComponent<TicketAssigneeProps> = ({ user }) 
       .map((value) => {
         return value.at(0);
       })
-      .join(',');
+      .join(' ')
+      .slice(0, 3);
 
     setInitials(tempInitials);
   }, [name]);

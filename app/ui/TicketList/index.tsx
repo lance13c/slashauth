@@ -56,7 +56,10 @@ const TicketList: React.FunctionComponent<TicketListProps> = () => {
           </>
         </List>
       ) : (
-        <div>No Tickets Available</div>
+        <>
+          <div>No Tickets Available</div>
+          <AddTicketBar />
+        </>
       )}
     </>
   );
