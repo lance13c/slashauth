@@ -13,17 +13,18 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies.
-# COPY pnpm-lock.yaml ./
+COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
+RUN pnpm config set auto-install-peers true
 RUN pnpm install
 
 # Copy local code to the container image.
 COPY . .
 
-RUN rm -rf src
+RUN pnpm build
 
 EXPOSE 3000
 
 # Run the web service on container startup.
-CMD [ "pnpm run dev" ]
+CMD [ "pnpm start" ]
