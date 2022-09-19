@@ -32,7 +32,10 @@ const TicketList: React.FunctionComponent<TicketListProps> = () => {
     refetch();
   }, [filterState]);
 
-  if (error) return <div>Failed to load</div>;
+  if (error) {
+    console.error(error);
+    return <div>Failed to load</div>;
+  }
   if (loading) return <div>Loading...</div>;
 
   return (
