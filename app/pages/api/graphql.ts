@@ -7,6 +7,8 @@ import { connectToDatabase } from '../../lib/server/connectToMongoDB';
 const server = new ApolloServer({
   schema: graphQLScheme,
   csrfPrevention: true,
+
+  cache: 'bounded',
   // Change this to be dependent on env
   plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
 });

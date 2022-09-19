@@ -45,8 +45,6 @@ const UserForm: React.FunctionComponent<UserFormProps> = ({ onComplete }) => {
     });
   };
 
-  console.log(errors);
-
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <section

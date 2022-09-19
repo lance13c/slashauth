@@ -31,8 +31,6 @@ const ActionBar: React.FunctionComponent<ActionBarProps> = () => {
     };
   });
 
-  console.log(STATUS_OPTIONS);
-
   const { enqueueSnackbar } = useSnackbar();
 
   const handleOnClickCreateTicket = () => {

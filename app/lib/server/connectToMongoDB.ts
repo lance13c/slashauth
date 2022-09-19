@@ -24,7 +24,7 @@ export async function connectToDatabase() {
         console.error(error);
       }
     });
-    console.log('mongodb database started');
+    console.info('mongodb database started');
     console.info('mongodbURI');
     console.info('dbName');
     cachedConnection = mongoose.connection;

@@ -4,8 +4,6 @@ import mongoose from 'mongoose';
 import { TicketDocument, ticketScheme } from './ticket';
 import { UserModel } from './user';
 
-const CUSTOM_OPTIONS = {};
-
 // Ticket
 const TicketModel = mongoose.models?.Ticket || mongoose.model<TicketDocument>('Ticket', ticketScheme);
 

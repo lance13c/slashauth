@@ -6,7 +6,11 @@
     "app/*",
     "database/*"
   ],
-  "scripts": {},
+  "scripts": {
+    "dev": "pnpm --stream -r dev",
+    "build": "pnpm --stream -r build",
+    "start": "pnpm --stream -r start"
+  },
   "devDependencies": {
     "prettier": "latest"
   },
