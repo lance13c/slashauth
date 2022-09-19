@@ -50,7 +50,7 @@
 
 ## Development Setup
 
-1. Install NodeJS https://nodejs.org or via [nvm](https://github.com/nvm-sh/nvm)
+1. Install NodeJS version 16 or 18 at https://nodejs.org or via [nvm](https://github.com/nvm-sh/nvm)
 1. Install `pnpm`
    ```
    npm install -g pnpm
